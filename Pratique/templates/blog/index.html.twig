@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title  %} 
+
+{% endblock %}
+
+{% block body %}
+
+<h1 style="text-align:center;color:Teal; font-size:25px">Liste Des Employés</h1>
+{% if employers  %}
+<table class='table table-stiped' border="2">
+    <thead>
+        <tr>
+            <th bgcolor="#669999">Matricule</th>
+            <th bgcolor="#669999">Nom Complet</th>
+            <th bgcolor="#669999">Date Naissance</th>
+            <th bgcolor="#669999">Salaire</th>
+            <th bgcolor="#669999">Actions</th>
+            <th bgcolor="#669999">Actions</th>
+        </tr>
+    </thead>
+    <tbody> 
+    {% for employer in employers %}
+    <tr>
+        <td bgcolor="#CCCCCC">{{ employer.matricule}}</td>
+        <td bgcolor="#CCCCCC">{{ employer.nomcomplet}}</td>
+        <td bgcolor="#CCCCCC">{{ employer.datenaissance | date('d/m/y')}}</td>
+        <td bgcolor="#CCCCCC">{{ employer.salaire}}</td>
+        <td bgcolor="#CCCCCC"><a href="/employer/{{employer.id}}" class="btn btn-primary">Modifier</a></td>
+        <td bgcolor="#CCCCCC"><a href="{{path("blog/supempl" , {'id': employer.id})}}" class="btn btn-info">Supprimer</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else  %}
+{% endif %}
+{% endblock  %}
